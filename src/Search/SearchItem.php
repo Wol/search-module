@@ -86,6 +86,7 @@ class SearchItem implements SearchItemInterface, PresentableInterface, Arrayable
         $this->entry_type  = array_get($attributes, 'entry_type');
         $this->description = array_get($attributes, 'description');
         $this->keywords    = array_filter(explode(',', array_get($attributes, 'keywords', '')));
+        $this->original    = $attributes;
     }
 
     /**

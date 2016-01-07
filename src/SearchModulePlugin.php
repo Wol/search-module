@@ -31,8 +31,15 @@ class SearchModulePlugin extends Plugin
                         'results',
                         function (SearchCriteria $criteria) use ($term, $options) {
 
+                            $fields = $criteria->option('fields');
+                            $fuzzy = $criteria->option('fuzzy');
+
+                            if(!is_null($fuzzy)){
+                                $options['fuzzy'] = $fuzzy;
+                            }
+
                             if ($term) {
-                                $criteria->search(null, $term, $options);
+                                $criteria->search($fields, $term, $options);
                             }
 
                             return $this->dispatch(new GetSearchResults($criteria));
